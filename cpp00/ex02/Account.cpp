@@ -86,7 +86,7 @@ bool Account::makeWithdrawal(int withdrawal)
 	if (this->_amount - withdrawal >= 0)
 	{
 		ss << withdrawal;
-		std::cout << ss.str() + ";amount";
+		std::cout << ss.str() + ";amount:";
 		this->_amount -= withdrawal;
 		this->_totalAmount -= withdrawal;
 		this->_nbWithdrawals++;
