@@ -2,12 +2,12 @@
 
 Contact::Contact(void)
 {
-	std::cout << "Contact Initialized" << std::endl;
+	// std::cout << "Contact Initialized" << std::endl;
 }
 
-Contact::~Contact()
+Contact::~Contact(void)
 {
-	std::cout << "Contact Destructed" << std::endl;
+	// std::cout << "Contact Destructed" << std::endl;
 }
 
 std::string	Contact::getFirstname(void) const

@@ -9,6 +9,7 @@ int	main(void)
 
 
 	i = 0;
+	std::cout << "Welcome to the phone book, please type ADD, SERACH or EXIT" << std::endl;
 	while (std::getline(std::cin, entry))
 	{
 		if (entry == "ADD")

@@ -2,7 +2,7 @@
 
 PhoneBook::PhoneBook(void)
 {
-	std::cout << "PhoneBook Created" << std::endl;
+	std::cout << "PhoneBook Initialized" << std::endl;
 }
 
 PhoneBook::~PhoneBook(void)
@@ -23,7 +23,12 @@ void PhoneBook::add(int i)
 	while (lastName.empty())
 	{
 		std::cout << "Last Name: " << std::ends;
-		std::getline(std::cin, lastName);
+		if (!getline(std::cin, lastName))
+		{
+			std::cout << "You exited the programm" << std::endl;
+			exit(EXIT_SUCCESS);
+		}
+		// std::getline(std::cin, lastName);
 		if (lastName.empty())
 			std::cout << "Error no empty entry" << std::endl;
 		else
@@ -32,7 +37,11 @@ void PhoneBook::add(int i)
 	while (firstName.empty())
 	{
 		std::cout << "First Name: " << std::ends;
-		std::getline(std::cin, firstName);
+		if (!getline(std::cin, firstName))
+		{
+			std::cout << "You exited the programm" << std::endl;
+			exit(EXIT_SUCCESS);
+		}
 		if (firstName.empty())
 			std::cout << "Error no empty entry" << std::endl;
 		else
@@ -41,7 +50,11 @@ void PhoneBook::add(int i)
 	while (nickname.empty())
 	{
 		std::cout << "Nickname: " << std::ends;
-		std::getline(std::cin, nickname);
+		if (!getline(std::cin,nickname))
+		{
+			std::cout << "You exited the programm" << std::endl;
+			exit(EXIT_SUCCESS);
+		}
 		if (nickname.empty())
 			std::cout << "Error no empty entry" << std::endl;
 		else
@@ -50,7 +63,11 @@ void PhoneBook::add(int i)
 	while (phoneNumber.empty() || phoneNumber.find_first_of("0123456789"))
 	{
 		std::cout << "Phone Number: " << std::ends;
-		std::getline(std::cin, phoneNumber);
+		if (!getline(std::cin, phoneNumber))
+		{
+			std::cout << "You exited the programm" << std::endl;
+			exit(EXIT_SUCCESS);
+		}
 		if (phoneNumber.empty())
 			std::cout << "Error no empty entry" << std::endl;
 		else if (phoneNumber.find_first_of("0123456789"))
@@ -61,7 +78,11 @@ void PhoneBook::add(int i)
 	while (darkestSecret.empty())
 	{
 		std::cout << "Darkest Secret: " << std::ends;
-		std::getline(std::cin, darkestSecret);
+		if (!getline(std::cin, darkestSecret))
+		{
+			std::cout << "You exited the programm" << std::endl;
+			exit(EXIT_SUCCESS);
+		}
 		if (darkestSecret.empty())
 			std::cout << "Error no empty entry" << std::endl;
 		else
@@ -104,7 +125,11 @@ void	PhoneBook::search(void) const
 	while (index.empty() || index.find_first_of("01234567"))
 	{
 		std::cout << "Please enter an index : ";
-		std::getline(std::cin, index);
+		if (!getline(std::cin, index))
+		{
+			std::cout << "You exited the program" << std::endl;
+			return ;
+		}
 		if (index.find_first_of("01234567"))
 			std::cout << "Index must be digit between 0 and 7" << std::endl;
 		else if (index.empty())
