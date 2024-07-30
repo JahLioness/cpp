@@ -1,13 +1,12 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-INCLUDES = Weapon.hpp HumanA.hpp HumanB.hpp
-SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
-NAME = unnecessary_violence
+NAME = sed
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(INCLUDES)
+$(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
@@ -19,6 +18,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean all
+re : fclean all
 
 .PHONY: all clean fclean re
