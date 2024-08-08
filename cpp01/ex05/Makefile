@@ -1,8 +1,8 @@
-CXX = c++
+CXX= c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = main.cpp
-NAME = ex02
-OBJ = $(SRC:.cpp=.o)
+SRC = main.cpp Harl.cpp
+OBJ =$(SRC:.cpp=.o)
+NAME = Harl
 
 all: $(NAME)
 
@@ -15,7 +15,7 @@ $(NAME): $(OBJ)
 clean:
 	rm -f $(OBJ)
 
-fclean: clean
+flcean: clean
 	rm -f $(NAME)
 
 re: fclean all

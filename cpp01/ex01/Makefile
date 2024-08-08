@@ -1,5 +1,5 @@
-CC = c++ 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++ 
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = zombieHorde
 INCLUDES = Zombie.hpp
 SRC = Zombie.cpp zombieHorde.cpp main.cpp
@@ -8,10 +8,10 @@ OBJ = $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ) $(INCLUDES)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CxX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
