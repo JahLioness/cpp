@@ -6,4 +6,5 @@ int	main(void)
 	ScavTrap	teddy = ScavTrap("teddy");
 
 	teddy.guardGate();
+	teddy.attack("jorris");
 }

@@ -9,7 +9,7 @@ int	main(void)
 
 
 	i = 0;
-	std::cout << "Welcome to the phone book, please type ADD, SERACH or EXIT" << std::endl;
+	std::cout << "Welcome to the phone book, please type ADD, SEARCH or EXIT" << std::endl;
 	while (std::getline(std::cin, entry))
 	{
 		if (entry == "ADD")
@@ -21,6 +21,7 @@ int	main(void)
 			repertoire.search();
 		else if (entry == "EXIT")
 			break ;
+		std::cout << "Please type ADD, SEARCH or EXIT" << std::endl;
 	}
 	return (0);
 }

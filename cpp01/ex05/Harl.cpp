@@ -32,7 +32,7 @@ void	Harl::error(void)
 
 void	Harl::complain(std::string level)
 {
-	void (Harl::*functptr[4] )(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	void (Harl::*functptr[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	std::string tab[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	int	i = 0;
 

@@ -5,12 +5,11 @@
 
 class ScavTrap : virtual public ClapTrap
 {
-	public:
-		ScavTrap(std::string name);
-		~ScavTrap(void);
-
-		void	attack(const std::string& target);
-		void	guardGate();
+  public:
+	ScavTrap(std::string name);
+	~ScavTrap(void);
+	void	attack(const std::string& target);
+	void	guardGate();
 };
 
 #endif

@@ -10,6 +10,21 @@ PhoneBook::~PhoneBook(void)
 	std::cout << "PhoneBook Destructed" << std::endl;
 }
 
+bool is_digits(const std::string &str)
+{
+    return str.find_first_not_of("0123456789") == std::string::npos;
+}
+
+bool is_print(const std::string &str)
+{
+	for (size_t i = 0; i < str.length(); i++)
+	{
+		if (!isprint(str[i]))
+			return false;
+	}
+	return true;
+}
+
 void PhoneBook::add(int i)
 {
 	std::string firstName;
@@ -20,7 +35,7 @@ void PhoneBook::add(int i)
 
 	if (i > 7)
 		i = 0;
-	while (lastName.empty())
+	while (lastName.empty() || !is_print(lastName))
 	{
 		std::cout << "Last Name: " << std::ends;
 		if (!getline(std::cin, lastName))
@@ -28,13 +43,14 @@ void PhoneBook::add(int i)
 			std::cout << "You exited the programm" << std::endl;
 			exit(EXIT_SUCCESS);
 		}
-		// std::getline(std::cin, lastName);
 		if (lastName.empty())
 			std::cout << "Error no empty entry" << std::endl;
+		else if (!is_print(lastName))
+			std::cout << "Error entry must be printable" << std::endl;
 		else
 			this->toto[i].setLastname(lastName);
 	}
-	while (firstName.empty())
+	while (firstName.empty() || !is_print(firstName))
 	{
 		std::cout << "First Name: " << std::ends;
 		if (!getline(std::cin, firstName))
@@ -44,10 +60,12 @@ void PhoneBook::add(int i)
 		}
 		if (firstName.empty())
 			std::cout << "Error no empty entry" << std::endl;
+		else if (!is_print(firstName))
+			std::cout << "Error entry must be printable" << std::endl;
 		else
 			this->toto[i].setFirstname(firstName);
 	}
-	while (nickname.empty())
+	while (nickname.empty() || !is_print(nickname))
 	{
 		std::cout << "Nickname: " << std::ends;
 		if (!getline(std::cin,nickname))
@@ -57,10 +75,12 @@ void PhoneBook::add(int i)
 		}
 		if (nickname.empty())
 			std::cout << "Error no empty entry" << std::endl;
+		else if (!is_print(nickname))
+			std::cout << "Error entry must be printable" << std::endl;
 		else
 			this->toto[i].setNickname(nickname);
 	}
-	while (phoneNumber.empty() || phoneNumber.find_first_of("0123456789"))
+	while (phoneNumber.empty() || !is_digits(phoneNumber))
 	{
 		std::cout << "Phone Number: " << std::ends;
 		if (!getline(std::cin, phoneNumber))
@@ -70,12 +90,12 @@ void PhoneBook::add(int i)
 		}
 		if (phoneNumber.empty())
 			std::cout << "Error no empty entry" << std::endl;
-		else if (phoneNumber.find_first_of("0123456789"))
+		else if (!is_digits(phoneNumber))
 			std::cout << "Error entry must be digits" << std::endl;
 		else
 			this->toto[i].setPhoneNumber(phoneNumber);
 	}
-	while (darkestSecret.empty())
+	while (darkestSecret.empty() || !is_print(darkestSecret))
 	{
 		std::cout << "Darkest Secret: " << std::ends;
 		if (!getline(std::cin, darkestSecret))
@@ -85,6 +105,8 @@ void PhoneBook::add(int i)
 		}
 		if (darkestSecret.empty())
 			std::cout << "Error no empty entry" << std::endl;
+		else if (!is_print(darkestSecret))
+			std::cout << "Error entry must be printable" << std::endl;
 		else
 			this->toto[i].setDarkestSecret(darkestSecret);
 	}

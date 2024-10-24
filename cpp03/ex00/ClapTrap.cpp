@@ -1,27 +1,22 @@
 #include "ClapTrap.hpp"
 
-std::map<std::string, ClapTrap*> ClapTrap::_clapTraps;
-
-ClapTrap::ClapTrap(std::string name)
+ClapTrap::ClapTrap(std::string name) : _name(name)
 {
 	this->_name = name;
 	this->_hitpoints = 10;
 	this->_energyPoints = 10;
 	this->_attackDamage = 0;
-	this->_clapTraps[this->_name] = this;
-	std::cout << "ClapTrap " << name << " has born" << std::endl;
+	std::cout << "ClapTrap " << name << " is born" << std::endl;
 }
 
 ClapTrap::~ClapTrap(void)
 {
-	this->_clapTraps.erase(this->_name);
 	std::cout << "ClapTrap " << this->_name << " has died" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &foe)
 {
 	*this = foe;
-	this->_clapTraps[this->_name] = this;
 	std::cout << "Claptrap " << this->_name << " has copied " << foe._name << std::endl;
 }
 
@@ -58,14 +53,5 @@ void	ClapTrap::attack(const std::string& target)
 {
 	if (this->_energyPoints <= 0 || this->_hitpoints <= 0)
 		return ;
-	std::map<std::string, ClapTrap*>::iterator	foe = this->_clapTraps.find(target);
-	if (foe != this->_clapTraps.end())
-	{
-		ClapTrap*	foePtr = foe->second;
-		this->_energyPoints--;
-		std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
-		foePtr->takeDamage(this->_attackDamage);
-	}
-	else
-		std::cout << "ClapTrap " << target << " is not in the wild..." << std::endl;
+	std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
 }

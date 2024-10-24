@@ -3,7 +3,6 @@
 
 # include <iostream>
 # include <string>
-# include <map>
 
 class ClapTrap
 {
@@ -21,7 +20,6 @@ private:
 	int _hitpoints;
 	int _energyPoints;
 	int _attackDamage;
-	static	std::map<std::string, ClapTrap*> _clapTraps;
 };
 
 #endif
