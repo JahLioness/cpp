@@ -44,7 +44,11 @@ int	main(int ac, char **av)
 		infile.open(av[1], std::fstream::in);
 		if (infile.is_open())
 			ft_replace(infile, av[1], av[2], av[3]);
+		else
+			std::cout << "Can't open file " << av[1] << std::endl;
 		infile.close();
 	}
+	else
+		std::cout << "Wrong number of arguments passed" << std::endl;
 	return (0);
 }

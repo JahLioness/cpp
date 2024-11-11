@@ -1,5 +1,13 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap(void)
+{
+	this->_hitpoints = 10;
+	this->_energyPoints = 10;
+	this->_attackDamage = 0;
+	std::cout << "ClapTrap is born" << std::endl;
+}
+
 ClapTrap::ClapTrap(std::string name) : _name(name)
 {
 	this->_hitpoints = 10;
@@ -21,10 +29,13 @@ ClapTrap::ClapTrap(const ClapTrap &src)
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap &clapTrap)
 {
-	this->_name = clapTrap._name + "_clone";
-	this->_hitpoints = clapTrap._hitpoints;
-	this->_energyPoints = clapTrap._energyPoints;
-	this->_attackDamage = clapTrap._attackDamage;
+	if (this != &clapTrap)
+	{
+		this->_name = clapTrap._name + "_clone";
+		this->_hitpoints = clapTrap._hitpoints;
+		this->_energyPoints = clapTrap._energyPoints;
+		this->_attackDamage = clapTrap._attackDamage;
+	}
 	return (*this);
 }
 

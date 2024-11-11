@@ -1,6 +1,6 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed() : raw(0)
+Fixed::Fixed() : _raw(0)
 {
 	// std::cout << "Default constructor called" << std::endl;
 }
@@ -8,20 +8,20 @@ Fixed::Fixed() : raw(0)
 Fixed::Fixed(int const toConvert)
 {
 	// std::cout << "Int constructor called" << std::endl;
-	this->raw = toConvert << this->bitNb;
+	this->_raw = toConvert << this->_bitNb;
 }
 
 Fixed::Fixed(float const toConvert)
 {
 	// std::cout << "Float constructor called" << std ::endl;
-	this->raw = roundf(toConvert * (1 << this->bitNb));
+	this->_raw = roundf(toConvert * (1 << this->_bitNb));
 }
 
 Fixed &Fixed::operator=(const Fixed &fix)
 {
 	// std::cout << "Copy assignement operator called" << std::endl;
 	if (this != &fix)
-		this->raw = fix.getRawBits();
+		this->_raw = fix.getRawBits();
 	return (*this);
 }
 
@@ -44,101 +44,101 @@ Fixed::~Fixed(void)
 int Fixed::getRawBits(void) const
 {
 	// std::cout << "getRawBits member function called" << std::endl;
-	return (this->raw);
+	return (this->_raw);
 }
 
 void Fixed::setRawBits(int const raw)
 {
-	this->raw = raw;
+	this->_raw = raw;
 }
 
 float Fixed::toFloat(void) const
 {
-	return ((float)this->raw / (1 << this->bitNb));
+	return ((float)this->_raw / (1 << this->_bitNb));
 }
 
 int Fixed::toInt(void) const
 {
-	return (roundf(this->raw >> this->bitNb));
+	return (roundf(this->_raw >> this->_bitNb));
 }
 
 bool Fixed::operator>(const Fixed &fix) const
 {
-	return (this->raw > fix.getRawBits());
+	return (this->_raw > fix.getRawBits());
 }
 
 bool Fixed::operator<(const Fixed &fix)
 {
-	return (this->raw < fix.getRawBits());
+	return (this->_raw < fix.getRawBits());
 }
 
 bool Fixed::operator>=(const Fixed &fix)
 {
-	return (this->raw >= fix.getRawBits());
+	return (this->_raw >= fix.getRawBits());
 }
 
 bool Fixed::operator<=(const Fixed &fix)
 {
-	return (this->raw <= fix.getRawBits());
+	return (this->_raw <= fix.getRawBits());
 }
 
 bool Fixed::operator==(const Fixed &fix)
 {
-	return (this->raw == fix.getRawBits());
+	return (this->_raw == fix.getRawBits());
 }
 
 bool Fixed::operator!=(const Fixed &fix)
 {
-	return (this->raw != fix.getRawBits());
+	return (this->_raw != fix.getRawBits());
 }
 
 Fixed &Fixed::operator+(const Fixed &fix)
 {
-	this->raw += fix.getRawBits();
+	this->_raw += fix.getRawBits();
 	return (*this);
 }
 
 Fixed &Fixed::operator-(const Fixed &fix)
 {
-	this->raw -= fix.getRawBits();
+	this->_raw -= fix.getRawBits();
 	return (*this);
 }
 
 Fixed &Fixed::operator*(const Fixed &fix)
 {
-	this->raw = (this->raw * fix.getRawBits()) >> this->bitNb;
+	this->_raw = (this->_raw * fix.getRawBits()) >> this->_bitNb;
 	return (*this);
 }
 
 Fixed &Fixed::operator/(const Fixed &fix)
 {
-	this->raw = (this->raw << this->bitNb) / fix.getRawBits();
+	this->_raw = (this->_raw << this->_bitNb) / fix.getRawBits();
 	return (*this);
 }
 
 Fixed	&Fixed::operator++(int)
 {
 	Fixed *tmp = new Fixed(*this);
-	this->raw++;
+	this->_raw++;
 	return (*tmp);
 }
 
 Fixed	&Fixed::operator--(int)
 {
 	Fixed *tmp = new Fixed(*this);
-	this->raw--;
+	this->_raw--;
 	return (*tmp);
 }
 
 Fixed	&Fixed::operator++(void)
 {
-	this->raw++;
+	this->_raw++;
 	return (*this);
 }
 
 Fixed	&Fixed::operator--(void)
 {
-	this->raw--;
+	this->_raw--;
 	return (*this);
 }
 

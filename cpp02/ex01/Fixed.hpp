@@ -7,8 +7,8 @@
 class Fixed
 {
 	private:
-		int	raw;
-		static int const bitNb = 8;
+		int	_raw;
+		static int const _bitNb = 8;
 	public:
 		Fixed();
 		Fixed(int const toConvert);
