@@ -35,6 +35,12 @@ FragTrap::~FragTrap(void)
 
 void	FragTrap::attack(std::string const &target)
 {
+	if (this->_energyPoints <= 0 || this->_hitpoints <= 0)
+	{
+		std::cout << "FragTrap " << this->_name << " couldn't attack " << target << " it doesn't have enough hitpoints or energy points" << std::endl;
+		return ;
+	}
+	this->_energyPoints--;
 	std::cout << "FragTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
 }
 

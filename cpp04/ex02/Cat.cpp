@@ -13,7 +13,12 @@ Cat::Cat(const Cat &src) : Animal::Animal(src)
 
 Cat &Cat::operator=(const Cat &cat)
 {
-	Animal::operator=(cat);
+	if (this != &cat)
+	{
+		delete this->_brain;
+		this->_brain = cat._brain;
+		this->_type = cat._type;
+	}
 	return (*this);
 }
 

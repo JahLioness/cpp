@@ -15,7 +15,7 @@ class AMateria
 		AMateria(void);
 		AMateria(std::string const &type);
 		AMateria(const AMateria &src);
-		~AMateria(void);
+		virtual ~AMateria(void);
 		AMateria &operator=(const AMateria &aMatria);
 		std::string const &getType(void) const;
 		virtual AMateria *clone(void) = 0;

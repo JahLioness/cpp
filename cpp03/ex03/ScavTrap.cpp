@@ -34,6 +34,12 @@ ScavTrap::~ScavTrap(void)
 
 void	ScavTrap::attack(const std::string& target)
 {
+	if (this->_energyPoints <= 0 || this->_hitpoints <= 0)
+	{
+		std::cout << "ScavTrap " << this->_name << " couldn't attack " << target << " it doesn't have enough hitpoints or energy points" << std::endl;
+		return ;
+	}
+	this->_energyPoints--;
 	std::cout << "ScavTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
 }
 

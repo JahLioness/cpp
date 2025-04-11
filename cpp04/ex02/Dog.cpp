@@ -13,7 +13,12 @@ Dog::Dog(const Dog &src) : Animal::Animal(src)
 
 Dog &Dog::operator=(const Dog &dog)
 {
-	Animal::operator=(dog);
+	if (this != &dog)
+	{
+		delete this->_brain;
+		this->_brain = dog._brain;
+		this->_type = dog._type;
+	}
 	return (*this);
 }
 

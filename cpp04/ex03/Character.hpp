@@ -3,7 +3,6 @@
 
 #include "ICharacter.hpp"
 #include <string>
-#include <type_traits>
 
 class ICharacter;
 
@@ -12,6 +11,7 @@ class Character : virtual public ICharacter
 	private:
 		std::string _name;
 		AMateria *_inventory[4];
+		AMateria *_dump[1024];
 
 	public:
 		Character(std::string const &name);

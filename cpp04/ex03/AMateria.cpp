@@ -23,7 +23,7 @@ AMateria::~AMateria(void)
 AMateria &AMateria::operator=(const AMateria &aMateria)
 {
 	if (this != &aMateria)
-		this->type = aMateria.type;
+		this->type = aMateria.getType();
 	return (*this);
 }
 
@@ -34,5 +34,5 @@ std::string const &AMateria::getType(void) const
 
 void AMateria::use(ICharacter &target)
 {
-
+	(void)target;
 }

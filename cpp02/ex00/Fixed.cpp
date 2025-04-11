@@ -8,7 +8,8 @@ Fixed::Fixed() : _raw(0)
 Fixed &Fixed::operator=(const Fixed &fix)
 {
 	std::cout << "Copy assignement operator called" << std::endl;
-	this->_raw = fix.getRawBits();
+	if (this != &fix)
+		this->_raw = fix.getRawBits();
 	return (*this);
 }
 

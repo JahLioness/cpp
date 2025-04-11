@@ -41,9 +41,12 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &clapTrap)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
+	int	toCompare = this->_hitpoints;
+
+	toCompare -= amount;
 	if (this->_hitpoints <= 0)
 		return ;
-	if ((this->_hitpoints - amount) < 0)
+	if (toCompare  < 0)
 		this->_hitpoints = 0;
 	else
 		this->_hitpoints -= amount;
@@ -53,7 +56,10 @@ void	ClapTrap::takeDamage(unsigned int amount)
 void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->_hitpoints <= 0 || this->_energyPoints <=0)
+	{
+		std::cout << "ClapTrap " << this->_name << " couldn't restore " << amount << " hitpoints it doesn't have enough hitpoints or energy points" << std::endl;
 		return ;
+	}
 	this->_hitpoints += amount;
 	this->_energyPoints--;
 	std::cout << "ClapTrap " << this->_name << " has restored " << amount << " hitpoints and is now at " << this->_hitpoints << " hitpoints" << std::endl;
@@ -62,6 +68,10 @@ void	ClapTrap::beRepaired(unsigned int amount)
 void	ClapTrap::attack(const std::string& target)
 {
 	if (this->_energyPoints <= 0 || this->_hitpoints <= 0)
+	{
+		std::cout << "ClapTrap " << this->_name << " couldn't attack " << target << " it doesn't have enough hitpoints or energy points" << std::endl;
 		return ;
+	}
+	this->_energyPoints--;
 	std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
 }
