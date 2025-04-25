@@ -23,6 +23,8 @@ bool ScalarConverter::isChar(std::string const toConvert) {
 
 bool ScalarConverter::isInt(std::string const toConvert) {
 	for(size_t i = 0; i < toConvert.length(); i++) {
+		if (i == 0 && (toConvert[i] == '-' || toConvert[i] == '+'))
+			i++;
 		if (!isdigit(toConvert[i]))
 			return (false);
 	}
@@ -33,6 +35,8 @@ bool ScalarConverter::isFloat(std::string const toConvert) {
 	if (toConvert.find('.') == std::string::npos || toConvert.find('f') == std::string::npos)
 		return (false);
 	for(size_t i = 0; i < toConvert.length(); i++) {
+		if (i == 0 && (toConvert[i] == '-' || toConvert[i] == '+'))
+			i++;
 		if ((!isdigit(toConvert[i]) && toConvert[i] != '.' && i != (toConvert.length() - 1)) || (i == (toConvert.length() - 1) && toConvert[i] != 'f'))
 			return (false);
 	}
@@ -43,6 +47,8 @@ bool ScalarConverter::isDouble(std::string const toConvert) {
 	if (toConvert.find('.') == std::string::npos)
 		return (false);
 	for (size_t i = 0; i < toConvert.length(); i++) {
+		if (i == 0 && (toConvert[i] == '-' || toConvert[i] == '+'))
+			i++;
 		if (!isdigit(toConvert[i]) && toConvert[i] != '.')
 			return (false);
 	}
