@@ -64,7 +64,8 @@ bool ScalarConverter::isInf(std::string const toConvert) {
 }
 
 void	ScalarConverter::converter(std::string const toConvert, char *c, int *val, float *valF, double *valD) {
-	std::stringstream strm(toConvert);
+	double	strm = std::atof(toConvert.c_str());
+	// std::stringstream strm(toConvert);
 	if (isChar(toConvert))
 	{
 		*c = toConvert[0];
@@ -74,21 +75,21 @@ void	ScalarConverter::converter(std::string const toConvert, char *c, int *val, 
 	}
 	else if (isInt(toConvert))
 	{
-		strm >> *val;
+		// strm >> *val;
 		*c = static_cast<char>(*val);
 		*valF = static_cast<float>(*val);
 		*valD = static_cast<double>(*val);
 	}
 	else if (isFloat(toConvert) && !isNan(toConvert) && !isInf(toConvert))
 	{
-		strm >> *valF;
+		// strm >> *valF;
 		*c = static_cast<char>(*valF);
 		*val = static_cast<int>(*valF);
 		*valD = static_cast<double>(*valF);
 	}
 	else if (isDouble(toConvert) && !isNan(toConvert) && !isInf(toConvert))
 	{
-		strm >> *valD;
+		// strm >> *valD;
 		*c = static_cast<char>(*valD);
 		*val = static_cast<int>(*valD);
 		*valF = static_cast<float>(*valD);

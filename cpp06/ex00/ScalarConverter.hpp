@@ -7,7 +7,7 @@
 # include <iostream>
 # include <limits>
 # include <string>
-#include<sstream>
+# include <stdlib.h>
 
 # define POS_INF (std::numeric_limits<double>::infinity())
 # define NEG_INF (std::numeric_limits<double>::infinity() * -1)
