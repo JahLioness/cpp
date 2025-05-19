@@ -37,14 +37,26 @@ int	Span::shortestSpan(void) {
 	std::sort(begin, end);
 	std::vector<int>::iterator min = begin;
 	std::vector<int>::iterator minNext = begin + 1;
-	for (std::vector<int>::iterator it = begin + 2; it != end; it++)
+	std::advance(begin, 2);
+	std::vector<int>::iterator temp;
+	for (std::vector<int>::iterator it = begin; it != end; it++)
 	{
+		if (it != end)
+			temp = it + 1;
 		if (*minNext - *min > *it - *minNext)
 		{
 			*min = *minNext;
 			*minNext = *it;
 		}
+		else if (*temp - *it < *minNext - *min)
+		{
+			*min = *it;
+			*minNext = *temp;
+		}
 	}
+	std::cout << "At the end : " << std::endl;
+	std::cout << "min = " << *min << std::endl;
+	std::cout << "minNext = " << *minNext << std::endl;
 	return (*minNext - *min);
 }
 
