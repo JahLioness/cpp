@@ -9,7 +9,7 @@ template <typename T,typename T1, typename F> void iter(T *adress, T1 length, F 
 	}
 }
 
-template <typename F> void print(F val) {
+template <typename T> void print(T val) {
 	std::cout << val << std::endl;
 }
 

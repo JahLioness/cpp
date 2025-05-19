@@ -29,29 +29,45 @@ void	Span::addNumber(int num) {
 		_tab.push_back(num);
 }
 
+// int	Span::shortestSpan(void) {
+// 	std::vector<int>::iterator begin = _tab.begin();
+// 	std::vector<int>::iterator end = _tab.end();
+// 	if (std::distance(begin, end) <= 1)
+// 		throw std::runtime_error("Container is empty");
+// 	std::sort(begin, end);
+// 	std::vector<int>::iterator min = begin;
+// 	std::vector<int>::iterator minNext = begin + 1;
+// 	for (std::vector<int>::iterator it = begin + 2; it != end; it++)
+// 	{
+// 		if (*minNext - *min > *it - *minNext)
+// 		{
+// 			*min = *minNext;
+// 			*minNext = *it;
+// 		}
+// 	}
+// 	return (*minNext - *min);
+// }
+
 int	Span::shortestSpan(void) {
 	std::vector<int>::iterator begin = _tab.begin();
 	std::vector<int>::iterator end = _tab.end();
 	if (std::distance(begin, end) <= 1)
 		throw std::runtime_error("Container is empty");
 	std::sort(begin, end);
+	std::vector<int>::iterator next;
 	std::vector<int>::iterator min = begin;
 	std::vector<int>::iterator minNext = begin + 1;
-	std::advance(begin, 2);
-	std::vector<int>::iterator temp;
-	for (std::vector<int>::iterator it = begin; it != end; it++)
+	for (std::vector<int>::iterator it = begin + 1; it != end; it++)
 	{
-		if (it != end)
-			temp = it + 1;
-		if (*minNext - *min > *it - *minNext)
+		next = it;
+		for (std::vector <int>::iterator ite = it + 1; ite != end; ite ++)
 		{
-			*min = *minNext;
-			*minNext = *it;
-		}
-		else if (*temp - *it < *minNext - *min)
-		{
-			*min = *it;
-			*minNext = *temp;
+			if (*ite - *next < *minNext - *min)
+			{
+				*minNext = *ite;
+				*min = *next;
+			}
+
 		}
 	}
 	std::cout << "At the end : " << std::endl;
