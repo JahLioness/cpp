@@ -64,15 +64,11 @@ int	Span::shortestSpan(void) {
 		{
 			if (*ite - *next < *minNext - *min)
 			{
-				*minNext = *ite;
-				*min = *next;
+				minNext = ite;
+				min = next;
 			}
-
 		}
 	}
-	std::cout << "At the end : " << std::endl;
-	std::cout << "min = " << *min << std::endl;
-	std::cout << "minNext = " << *minNext << std::endl;
 	return (*minNext - *min);
 }
 

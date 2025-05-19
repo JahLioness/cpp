@@ -14,7 +14,7 @@ void ScalarConverter::convert(std::string const toConvert) {
 	{
 		std::cerr << e.what() << '\n';
 	}
-	print(toConvert, c, val, valF, valD);
+	ScalarConverter::print(toConvert, c, val, valF, valD);
 }
 
 bool ScalarConverter::isChar(std::string const toConvert) {
