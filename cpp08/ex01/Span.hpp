@@ -16,7 +16,9 @@ class Span {
 		Span(const Span &ref);
 		Span &operator=(const Span &ref);
 		~Span();
+		std::vector<int> getTab();
 		void addNumber(int num);
+		void addNumber(std::vector<int> array);
 		int	shortestSpan(void);
 		int	longestSpan(void);
 } ;
