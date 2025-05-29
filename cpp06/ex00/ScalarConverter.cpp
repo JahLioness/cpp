@@ -9,12 +9,12 @@ void ScalarConverter::convert(std::string const toConvert) {
 	try
 	{
 		converter(toConvert, &c, &val, &valF, &valD);
+		ScalarConverter::print(toConvert, c, val, valF, valD);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	ScalarConverter::print(toConvert, c, val, valF, valD);
 }
 
 bool ScalarConverter::isChar(std::string const toConvert) {
@@ -22,6 +22,9 @@ bool ScalarConverter::isChar(std::string const toConvert) {
 }
 
 bool ScalarConverter::isInt(std::string const toConvert) {
+	double	strm = std::atof(toConvert.c_str());
+	if (strm > MAX_INT || strm < MIN_INT)
+		return (false);
 	for(size_t i = 0; i < toConvert.length(); i++) {
 		if (i == 0 && (toConvert[i] == '-' || toConvert[i] == '+'))
 			i++;
@@ -44,12 +47,13 @@ bool ScalarConverter::isFloat(std::string const toConvert) {
 }
 
 bool ScalarConverter::isDouble(std::string const toConvert) {
-	if (toConvert.find('.') == std::string::npos)
+	double	strm = std::atof(toConvert.c_str());
+	if (toConvert.find('.') == std::string::npos && (strm < MAX_INT && strm > MIN_INT))
 		return (false);
 	for (size_t i = 0; i < toConvert.length(); i++) {
 		if (i == 0 && (toConvert[i] == '-' || toConvert[i] == '+'))
 			i++;
-		if (!isdigit(toConvert[i]) && toConvert[i] != '.')
+		if (!isdigit(toConvert[i]) && toConvert[i] != '.' && toConvert[i] != 'e')
 			return (false);
 	}
 	return (true);
@@ -65,35 +69,39 @@ bool ScalarConverter::isInf(std::string const toConvert) {
 
 void	ScalarConverter::converter(std::string const toConvert, char *c, int *val, float *valF, double *valD) {
 	double	strm = std::atof(toConvert.c_str());
-	// std::stringstream strm(toConvert);
 	if (isChar(toConvert))
 	{
 		*c = toConvert[0];
 		*val = static_cast<int>(toConvert[0]);
 		*valF  = static_cast<float>(toConvert[0]);
 		*valD = static_cast<double>(toConvert[0]);
+		return ;
 	}
 	else if (isInt(toConvert))
 	{
-		// strm >> *val;
+		*val = strm;
 		*c = static_cast<char>(*val);
 		*valF = static_cast<float>(*val);
 		*valD = static_cast<double>(*val);
+		return ;
 	}
 	else if (isFloat(toConvert) && !isNan(toConvert) && !isInf(toConvert))
 	{
-		// strm >> *valF;
+		*valF = strm;
 		*c = static_cast<char>(*valF);
 		*val = static_cast<int>(*valF);
 		*valD = static_cast<double>(*valF);
+		return ;
 	}
 	else if (isDouble(toConvert) && !isNan(toConvert) && !isInf(toConvert))
 	{
-		// strm >> *valD;
+		*valD = strm;
 		*c = static_cast<char>(*valD);
 		*val = static_cast<int>(*valD);
 		*valF = static_cast<float>(*valD);
+		return ;
 	}
+	throw std::runtime_error("No conversion possible");
 }
 
 void	ScalarConverter::print(std::string const toConvert, char c, int val, float valF, double valD) {

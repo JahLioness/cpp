@@ -16,5 +16,6 @@ int	main(void)
 		else
 			std::cout << "Please enter DEBUG, INFO, WARNING or ERROR" << std::endl;
 	}
+		std::cout << "Thank you for using Harl, Goddbye !" << std::endl;
 	return (0);
 }
