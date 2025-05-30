@@ -2,6 +2,7 @@
 
 int main()
 {
+	std::cout << "std::mstack output :" << std::endl;
 	MutantStack<int> mstack;
 	mstack.push(5);
 	mstack.push(17);
@@ -19,9 +20,33 @@ int main()
 	--it;
 	while (it != ite)
 	{
-	std::cout << *it << std::endl;
-	++it;
+		std::cout << *it << std::endl;
+		++it;
 	}
 	std::stack<int> s(mstack);
+	/*-----------------------------------------------------------*/
+	std::cout << std::endl;
+	std::cout << "std::list output :" << std::endl;
+	std::list<int> lstack;
+	lstack.push_back(5);
+	lstack.push_back(17);
+	std::cout << lstack.back() << std::endl;
+	lstack.pop_back();
+	std::cout << lstack.size() << std::endl;
+	lstack.push_back(3);
+	lstack.push_back(5);
+	lstack.push_back(737);
+	//[...]
+	lstack.push_back(0);
+	std::list<int>::iterator iter = lstack.begin();
+	std::list<int>::iterator itera = lstack.end();
+	++iter;
+	--iter;
+	while (iter != itera)
+	{
+		std::cout << *iter << std::endl;
+		++iter;
+	}
+	// std::stack<int> se(lstack);
 	return 0;
 }
