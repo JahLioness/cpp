@@ -105,6 +105,7 @@ void	ScalarConverter::converter(std::string const toConvert, char *c, int *val, 
 }
 
 void	ScalarConverter::print(std::string const toConvert, char c, int val, float valF, double valD) {
+	double	strm = std::atof(toConvert.c_str());
 	std::cout << "char: ";
 	if (isNan(toConvert) || isInf(toConvert) || c < 0 || c > 127)
 		std::cout << "impossible" << std::endl;
@@ -113,7 +114,7 @@ void	ScalarConverter::print(std::string const toConvert, char c, int val, float 
 	else
 		std::cout << "'" << c << "'" << std::endl;
 	std::cout << "int: " ;
-	if (isNan(toConvert) || isInf(toConvert))
+	if (isNan(toConvert) || isInf(toConvert) || (strm > MAX_INT || strm < MIN_INT))
 		std::cout << "impossible" << std::endl;
 	else
 		std::cout << val << std::endl;
