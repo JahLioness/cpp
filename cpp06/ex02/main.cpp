@@ -20,8 +20,10 @@ void	identify(Base *p) {
 		std::cout << "Class of A type" << std::endl;
 	else if (B *b = dynamic_cast<B *>(p))
 		std::cout << "Class of B type" << std::endl;
-	else
+	else if (C *c = dynamic_cast<C *>(p))
 		std::cout << "Class of C type" << std::endl;
+	else
+		std::cout << "Fail to cast" << std::endl;
 }
 
 void	identify(Base &p) {
@@ -57,10 +59,12 @@ int main(void)
 	Base *class1= generate();
 	Base *class2 = generate();
 	Base *class3 = generate();
+	Base *classi = new Base();
 
 	identify(class1);
 	identify(class2);
 	identify(class3);
+	identify(classi);
 	std::cout << std::endl;
 
 	identify(*class1);
@@ -71,5 +75,6 @@ int main(void)
 	delete class1;
 	delete class2;
 	delete class3;
+	delete classi;
 	return (0);
 }

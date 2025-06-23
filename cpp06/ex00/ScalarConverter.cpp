@@ -64,7 +64,7 @@ bool ScalarConverter::isNan(std::string const toConvert) {
 }
 
 bool ScalarConverter::isInf(std::string const toConvert) {
-	return (toConvert == "-inf" || toConvert == "+inf");
+	return (toConvert == "-inff" || toConvert == "+inff" || toConvert == "inff" || toConvert == "+inf" || toConvert == "-inf" || toConvert == "inf");
 }
 
 void	ScalarConverter::converter(std::string const toConvert, char *c, int *val, float *valF, double *valD) {
@@ -101,6 +101,22 @@ void	ScalarConverter::converter(std::string const toConvert, char *c, int *val, 
 		*valF = static_cast<float>(*valD);
 		return ;
 	}
+	else if (isInf(toConvert))
+	{
+		*c = INFINITY;
+		*val = INFINITY;
+		*valD = INFINITY;
+		*valF = INFINITY;
+		return ;
+	}
+	else if (isNan(toConvert))
+	{
+		*c = NAN;
+		*val = NAN;
+		*valD = NAN;
+		*valF = NAN;
+		return ;
+	}
 	throw std::runtime_error("No conversion possible");
 }
 
@@ -123,23 +139,23 @@ void	ScalarConverter::print(std::string const toConvert, char c, int val, float 
 		std::cout << "nanf" << std::endl;
 	else if (isInf(toConvert))
 	{
-		if (toConvert[0] == '+')
-			std::cout << std::fixed << std::setprecision(1) << static_cast<float>(POS_INF) << "f" << std::endl;
-		else if (toConvert[0] == '-')
+		if (toConvert[0] == '-')
 			std::cout << std::fixed << std::setprecision(1) << static_cast<float>(NEG_INF) << "f" << std::endl;
+		else
+			std::cout << std::fixed << std::setprecision(1) << static_cast<float>(POS_INF) << "f" << std::endl;
 	}
 	else
 		std::cout << std::fixed << std::setprecision(1) << valF << "f" << std::endl;
 	std::cout << "double: ";
 	if (isNan(toConvert))
 		std::cout << "nan" << std::endl;
-		else if (isInf(toConvert))
-		{
-			if (toConvert[0] == '+')
-				std::cout << std::fixed << std::setprecision(1) << POS_INF << std::endl;
-			else if (toConvert[0] == '-')
-				std::cout << std::fixed << std::setprecision(1) << NEG_INF << std::endl;
-		}
+	else if (isInf(toConvert))
+	{
+		if (toConvert[0] == '-')
+			std::cout << std::fixed << std::setprecision(1) << NEG_INF << std::endl;
+		else
+			std::cout << std::fixed << std::setprecision(1) << POS_INF << std::endl;
+	}
 	else
 		std::cout << std::fixed << std::setprecision(1) << valD << std::endl;	
 }
