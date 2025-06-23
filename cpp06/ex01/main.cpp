@@ -11,7 +11,17 @@ int main(void) {
 	std::cout << "value: " << ptr->value << std::endl; 
 	std::cout << std::endl;
 
-	uintptr_t test =  Serializer::serialize(ptr);
+	uintptr_t test =  Serializer::serialize(NULL);
+	try
+	{
+		uintptr_t bad =  Serializer::serialize(NULL);
+		std::cout << bad << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
 	ptr = Serializer::deserialize(test);
 
 	std::cout << "after serialization: " << std::endl;

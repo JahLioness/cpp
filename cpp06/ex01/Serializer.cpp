@@ -2,6 +2,8 @@
 
 uintptr_t	Serializer::serialize(Data *ptr) {
 	uintptr_t ret;
+	if (!ptr)
+		throw std::runtime_error("Cannot cast null");
 	ret = reinterpret_cast<uintptr_t>(ptr);
 	return (ret);
 }

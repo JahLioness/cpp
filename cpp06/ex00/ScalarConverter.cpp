@@ -123,7 +123,7 @@ void	ScalarConverter::converter(std::string const toConvert, char *c, int *val, 
 void	ScalarConverter::print(std::string const toConvert, char c, int val, float valF, double valD) {
 	double	strm = std::atof(toConvert.c_str());
 	std::cout << "char: ";
-	if (isNan(toConvert) || isInf(toConvert) || c < 0 || c > 127)
+	if (isNan(toConvert) || isInf(toConvert) || strm < 0 || strm > 127)
 		std::cout << "impossible" << std::endl;
 	else if (!isprint(c))
 		std::cout << "Non displayable" <<std::endl;
