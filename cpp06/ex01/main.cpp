@@ -11,11 +11,11 @@ int main(void) {
 	std::cout << "value: " << ptr->value << std::endl; 
 	std::cout << std::endl;
 
-	uintptr_t test =  Serializer::serialize(NULL);
+	uintptr_t test =  Serializer::serialize(ptr);
 	try
 	{
 		uintptr_t bad =  Serializer::serialize(NULL);
-		std::cout << bad << std::endl;
+		std::cerr << bad << std::endl;
 	}
 	catch(const std::exception& e)
 	{

@@ -16,6 +16,8 @@ template <typename T, typename Container = std::deque<T> > class MutantStack: pu
 		~MutantStack();
 		iterator begin();
 		iterator end();
+
+		
 } ;
 
 #include "MutantStack.tpp"
