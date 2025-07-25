@@ -24,26 +24,26 @@ template <typename T, typename Container> typename MutantStack<T, Container>::it
 	return (this->c.end());
 }
 
-template <typename T, typename Container> typename MutantStack<T, Container>::const_iterator MutantStack<T, Container>::begin(void) {
+template <typename T, typename Container> typename MutantStack<T, Container>::const_iterator MutantStack<T, Container>::cbegin(void) {
 	return (this->c.begin());
 }
 
-template <typename T, typename Container> typename MutantStack<T, Container>::const_iterator MutantStack<T, Container>::end(void) {
+template <typename T, typename Container> typename MutantStack<T, Container>::const_iterator MutantStack<T, Container>::cend(void) {
 	return (this->c.end());
 }
 
-template <typename T, typename Container> typename MutantStack<T, Container>::reverse_iterator MutantStack<T, Container>::begin(void) {
+template <typename T, typename Container> typename MutantStack<T, Container>::reverse_iterator MutantStack<T, Container>::rbegin(void) {
 	return (this->c.rbegin());
 }
 
-template <typename T, typename Container> typename MutantStack<T, Container>::reverse_iterator MutantStack<T, Container>::end(void) {
+template <typename T, typename Container> typename MutantStack<T, Container>::reverse_iterator MutantStack<T, Container>::rend(void) {
 	return (this->c.rend());
 }
 
-template <typename T, typename Container> typename MutantStack<T, Container>::const_reverse_iterator MutantStack<T, Container>::begin(void) {
+template <typename T, typename Container> typename MutantStack<T, Container>::const_reverse_iterator MutantStack<T, Container>::crbegin(void) {
 	return (this->c.rbegin());
 }
 
-template <typename T, typename Container> typename MutantStack<T, Container>::const_reverse_iterator MutantStack<T, Container>::end(void) {
+template <typename T, typename Container> typename MutantStack<T, Container>::const_reverse_iterator MutantStack<T, Container>::crend(void) {
 	return (this->c.rend());
 }
