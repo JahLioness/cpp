@@ -3,6 +3,8 @@
 bool ft_check_entries(char **av, int ac)
 {
 	std::string temp;
+	if (ac <= 2)
+		return (0);
 	for (int i = 1; i < ac; i++)
 	{
 		temp = av[i];
@@ -20,7 +22,7 @@ bool ft_check_entries(char **av, int ac)
 int main(int ac, char **av) {
 	if (!ft_check_entries(av, ac))
 	{
-		std::cerr << "Invalid entries, please enter positive integers only" << std::endl;
+		std::cerr << "Invalid entries, please enter several positive integers as separate arguments" << std::endl;
 		return (1);
 	}
 	std::vector<unsigned int> vec;

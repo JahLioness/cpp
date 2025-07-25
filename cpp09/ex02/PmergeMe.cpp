@@ -23,6 +23,15 @@ PmergeMe::~PmergeMe() {
 	_deq.clear();
 }
 
+template<typename T> bool PmergeMe::isSorted(T container) {
+	for (typename T::iterator it = container.begin(); it != (container.end() - 1); it ++)
+	{
+		if (*it > *(it + 1))
+			return (0);
+	}
+	return(1);
+}
+
 void	printContent(std::vector<unsigned int> vec)
 {
 	for (std::vector<unsigned int>::iterator it = vec.begin(); it != vec.end(); it++)
@@ -52,11 +61,12 @@ void	PmergeMe::process(void) {
 	std::cout << "After : ";
 	printContent(this->_vec);
 	printTimeVec(start, end, this->_vec.size());
-
+	
 	start = clock();
 	sortDeq(this->_deq);
 	end = clock();
 	printTimeDeq(start, end, this->_deq.size());
+	(isSorted(this->_vec) && isSorted(this->_deq)) ? std::cout<<"Ok"<<std::endl : std::cout<<"Not Ok"<<std::endl;
 }
 
 std::vector<unsigned int> PmergeMe::jacobI(size_t pendSize) {
@@ -87,18 +97,21 @@ void PmergeMe::sortVec(std::vector<unsigned int> &tab) {
 	if (tab.size() < 2)
 		return;
 
-	std::vector<unsigned int> main;
-	std::vector<unsigned int> pending;
-	bool Odd = tab.size() % 2 != 0;
+	size_t tabSize = tab.size();
+	unsigned int Odd = tab.size() % 2 != 0;
 	int bolosse = -1;
-	
+
 	if (Odd)
 	{
 		bolosse = tab.back();
 		tab.pop_back();
+		tabSize--;
 	}
-	size_t tabSize = tab.size();
-	// for (std::vector<unsigned int>::iterator it = tab.begin(); it != tab.end(); it+=2)
+
+	std::vector<unsigned int> main;
+	std::vector<unsigned int> pending;
+
+
 	for (unsigned int i = 0; i < tabSize; i+=2)
 	{
 		unsigned int a = tab[i];
@@ -128,17 +141,20 @@ void PmergeMe::sortVec(std::vector<unsigned int> &tab) {
 	if (tab.size() < 2)
 		return;
 
-	std::deque<unsigned int> main;
-	std::deque<unsigned int> pending;
-	bool Odd = tab.size() % 2;
+	unsigned int Odd = tab.size() % 2;
 	int bolosse = -1;
+	unsigned int tabSize = tab.size();
 	
 	if (Odd)
 	{
 		bolosse = tab.back();
 		tab.pop_back();
+		tabSize--;
+		
 	}
-	unsigned int tabSize = tab.size();
+
+	std::deque<unsigned int> main;
+	std::deque<unsigned int> pending;
 	for (unsigned int i = 0; i < tabSize; i+=2)
 	{
 		unsigned int a = tab[i];
@@ -157,6 +173,7 @@ void PmergeMe::sortVec(std::vector<unsigned int> &tab) {
 	for(unsigned int i = 0; i < jacobIdx.size(); ++i)
 	{
 		unsigned int idx = jacobIdx[i];
+
 		std::deque<unsigned int>::iterator pos = std::lower_bound(main.begin(), main.end(), pending[idx]);
 	 	main.insert(pos, pending[idx]);
 	}

@@ -20,8 +20,7 @@ class PmergeMe {
 		~PmergeMe();
 		void sortVec(std::vector<unsigned int> &tab);
 		void sortDeq(std::deque<unsigned int> &tab);
-		bool isSorted(std::vector<unsigned int> &vec);
-		bool isSorted(std::deque<unsigned int> &deq);
+		template<typename T> bool isSorted(T container);
 		void process(void);
 		std::vector<unsigned int> jacobI(size_t pendSize);
 } ;
